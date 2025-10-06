@@ -1,0 +1,248 @@
+/* استایل‌های جدید برای ژنولوژی */
+
+.tree-levels {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.tree-level {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: relative;
+}
+
+.tree-level.level-0 {
+    margin-bottom: 40px;
+}
+
+.tree-level.level-1 {
+    margin-bottom: 30px;
+}
+
+.tree-level.level-1::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+}
+
+.tree-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.node-connector {
+    position: absolute;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.node-connector.main {
+    height: 20px;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.node-connector.left {
+    height: 20px;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--info);
+}
+
+.node-connector.right {
+    height: 20px;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+}
+
+.node-box {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 6px 20px rgba(107, 99, 255, 0.4);
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.node-box:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(107, 99, 255, 0.6);
+}
+
+.node-box.current-user {
+    background: linear-gradient(135deg, var(--accent), var(--info));
+    box-shadow: 0 6px 20px rgba(54, 209, 220, 0.5);
+    animation: pulse 2s infinite;
+}
+
+.node-box.small {
+    width: 60px;
+    height: 60px;
+    font-size: 0.9rem;
+}
+
+.node-id {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.node-stats {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.node-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.7rem;
+}
+
+.node-stat i {
+    font-size: 0.6rem;
+    margin-bottom: 2px;
+}
+
+.node-stat.left {
+    color: var(--info);
+}
+
+.node-stat.right {
+    color: var(--secondary);
+}
+
+.node-stat-count {
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.empty-node {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+    transition: all 0.3s ease;
+}
+
+.empty-node:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.empty-node.small {
+    width: 60px;
+    height: 60px;
+}
+
+/* انیمیشن‌های جدید */
+@keyframes nodeAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.tree-node {
+    animation: nodeAppear 0.5s ease forwards;
+}
+
+.tree-node:nth-child(1) { animation-delay: 0.1s; }
+.tree-node:nth-child(2) { animation-delay: 0.2s; }
+.tree-node:nth-child(3) { animation-delay: 0.3s; }
+.tree-node:nth-child(4) { animation-delay: 0.4s; }
+.tree-node:nth-child(5) { animation-delay: 0.5s; }
+
+/* رسپانسیو برای ژنولوژی */
+@media (max-width: 768px) {
+    .tree-level {
+        gap: 15px;
+    }
+    
+    .node-box {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .node-box.small {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .node-id {
+        font-size: 1rem;
+    }
+    
+    .node-stat {
+        font-size: 0.6rem;
+    }
+    
+    .node-stat-count {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .tree-level {
+        gap: 10px;
+    }
+    
+    .node-box {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .node-box.small {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .node-id {
+        font-size: 0.9rem;
+    }
+    
+    .node-stats {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .node-stat {
+        flex-direction: row;
+        gap: 3px;
+    }
+}
