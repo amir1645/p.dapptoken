@@ -1,0 +1,135 @@
+/* استایل‌های ساده برای درخت ژنولوژی */
+.simple-tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.tree-level {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.tree-connectors {
+    position: relative;
+    height: 40px;
+    width: 200px;
+}
+
+.connector {
+    position: absolute;
+    height: 2px;
+    width: 80px;
+    background: var(--primary);
+    top: 50%;
+}
+
+.connector.left {
+    left: 0;
+    transform: rotate(-30deg);
+    transform-origin: left center;
+}
+
+.connector.right {
+    right: 0;
+    transform: rotate(30deg);
+    transform-origin: right center;
+}
+
+.tree-node {
+    width: 100px;
+    height: 80px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.main-node {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: white;
+    box-shadow: 0 4px 15px rgba(107, 99, 255, 0.3);
+}
+
+.left-node {
+    background: linear-gradient(135deg, var(--info), #3B82F6);
+    color: white;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.right-node {
+    background: linear-gradient(135deg, var(--secondary), #FF8FA3);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 101, 132, 0.3);
+}
+
+.empty-node {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    color: var(--gray);
+}
+
+.node-content {
+    padding: 10px;
+}
+
+.node-id {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+}
+
+.node-info, .node-position {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.tree-node:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* رسپانسیو */
+@media (max-width: 768px) {
+    .tree-level {
+        gap: 20px;
+    }
+    
+    .tree-node {
+        width: 80px;
+        height: 70px;
+    }
+    
+    .tree-connectors {
+        width: 150px;
+    }
+    
+    .connector {
+        width: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tree-level {
+        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .tree-connectors {
+        height: 60px;
+        width: 100px;
+    }
+    
+    .connector.left {
+        transform: rotate(-45deg);
+    }
+    
+    .connector.right {
+        transform: rotate(45deg);
+    }
+}
